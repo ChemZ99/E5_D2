@@ -1,11 +1,10 @@
 package Exercises.E5_D2;
 
-import Exercises.E5_D2.entities.Drink;
-import Exercises.E5_D2.entities.Pizza;
-import Exercises.E5_D2.entities.Topping;
+import Exercises.E5_D2.entities.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +59,7 @@ public class BeansConfiguration {
     Drink getWine() {
         return new Drink("Wine","0,75l, 13%",607,7.49);
     }
-    @Bean
+    /*@Bean
     void menu() {
         System.out.println("PIZZAS");
         System.out.println(getMargherita().toString());
@@ -76,5 +75,53 @@ public class BeansConfiguration {
         System.out.println(getLemonade().toString());
         System.out.println(getWater().toString());
         System.out.println(getWine().toString());
+    }*/
+    @Bean
+    Menu fullMenu() {
+        List<Pizza> pizzaList = new ArrayList<>();
+        pizzaList.add(getMargherita());
+        pizzaList.add(getHawaaiana());
+        pizzaList.add(getSalamiPizza());
+        List<Topping> toppingList = new ArrayList<>();
+        toppingList.add(getCheese());
+        toppingList.add(getHam());
+        toppingList.add(getOnions());
+        toppingList.add(getPineapple());
+        toppingList.add(getSalami());
+        List<Drink> drinkList = new ArrayList<>();
+        drinkList.add(getWater());
+        drinkList.add(getLemonade());
+        drinkList.add(getWine());
+        return new Menu(pizzaList,toppingList,drinkList);
+    }
+    @Bean
+    Tavolo getTavolo1() {
+        return new Tavolo(1,12,StatoTavolo.LIBERO);
+    }
+    @Bean
+    Ordine getExampleOrder() {
+        List<Pizza> pizze = new ArrayList<>();
+        pizze.add(getMargherita());
+        pizze.add(getMargherita());
+        pizze.add(getMargherita());
+        pizze.add(getMargherita());
+        pizze.add(getMargherita());
+        pizze.add(getMargherita());
+        pizze.add(getSalamiPizza());
+        pizze.add(getSalamiPizza());
+        pizze.add(getSalamiPizza());
+        pizze.add(getSalamiPizza());
+        pizze.add(getHawaaiana());
+        List<Drink> bere = new ArrayList<>();
+        bere.add(getWater());
+        bere.add(getWater());
+        bere.add(getWater());
+        bere.add(getWater());
+        bere.add(getWater());
+        bere.add(getLemonade());
+        bere.add(getLemonade());
+        bere.add(getLemonade());
+        bere.add(getWine());
+        return new Ordine(1,pizze,bere,StatoOrdine.IN_CORSO,11, LocalDateTime.now());
     }
 }

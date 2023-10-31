@@ -14,7 +14,6 @@ public class E5D2Application {
 
 	public static void configurationClass() {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(E5D2Application.class);
-		ctx.getBean("menu");
 	}
 
 }

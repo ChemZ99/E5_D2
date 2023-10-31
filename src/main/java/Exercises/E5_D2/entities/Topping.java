@@ -1,13 +1,12 @@
-package Exercises.E5_D1.entities;
+package Exercises.E5_D2.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Drink {
+public class Topping {
     private String name;
-    private String qt;
     private int calories;
     private double price;
 }

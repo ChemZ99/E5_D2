@@ -1,8 +1,8 @@
-package Exercises.E5_D1;
+package Exercises.E5_D2;
 
-import Exercises.E5_D1.entities.Drink;
-import Exercises.E5_D1.entities.Pizza;
-import Exercises.E5_D1.entities.Topping;
+import Exercises.E5_D2.entities.Drink;
+import Exercises.E5_D2.entities.Pizza;
+import Exercises.E5_D2.entities.Topping;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

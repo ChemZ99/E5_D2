@@ -9,25 +9,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@PropertySource("application.properties")
+@AllArgsConstructor
 public class Ordine {
     private int numero;
     private List<Pizza> pizze;
     private List<Drink> bere;
     private StatoOrdine stato;
-
-    private final int costoCoperto = @Value("${E5D2Application.coperto}");
+    private double costoCoperto;
     private int coperti;
     private LocalDateTime acquisizione;
 
-    public Ordine(int numero, List<Pizza> pizze, List<Drink> bere, StatoOrdine stato, int coperti, LocalDateTime acquisizione) {
-        this.numero = numero;
-        this.pizze = pizze;
-        this.bere = bere;
-        this.stato = stato;
-        this.coperti = coperti;
-        this.acquisizione = acquisizione;
-    }
+
 
     public double getTotale() {
         double totalePizze = pizze.stream().mapToDouble(Pizza::getPrice).sum();

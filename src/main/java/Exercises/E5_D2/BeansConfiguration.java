@@ -1,14 +1,17 @@
 package Exercises.E5_D2;
 
 import Exercises.E5_D2.entities.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
+@PropertySource("application.properties")
 public class BeansConfiguration {
     @Bean
     Topping getCheese() {
@@ -95,33 +98,17 @@ public class BeansConfiguration {
         return new Menu(pizzaList,toppingList,drinkList);
     }
     @Bean
-    Tavolo getTavolo1() {
-        return new Tavolo(1,12,StatoTavolo.LIBERO);
+    Tavolo getTavolo1(@Value("${E5D2Application.coperto}") double costoCoperto) {
+        return new Tavolo(1,12,costoCoperto,StatoTavolo.LIBERO);
     }
     @Bean
-    Ordine getExampleOrder() {
+    Ordine getExampleOrder(@Value("${E5D2Application.coperto}") double costoCoperto) {
         List<Pizza> pizze = new ArrayList<>();
         pizze.add(getMargherita());
-        pizze.add(getMargherita());
-        pizze.add(getMargherita());
-        pizze.add(getMargherita());
-        pizze.add(getMargherita());
-        pizze.add(getMargherita());
-        pizze.add(getSalamiPizza());
-        pizze.add(getSalamiPizza());
-        pizze.add(getSalamiPizza());
-        pizze.add(getSalamiPizza());
-        pizze.add(getHawaaiana());
+
         List<Drink> bere = new ArrayList<>();
         bere.add(getWater());
-        bere.add(getWater());
-        bere.add(getWater());
-        bere.add(getWater());
-        bere.add(getWater());
-        bere.add(getLemonade());
-        bere.add(getLemonade());
-        bere.add(getLemonade());
-        bere.add(getWine());
-        return new Ordine(1,pizze,bere,StatoOrdine.IN_CORSO,11, LocalDateTime.now());
+
+        return new Ordine(1,pizze,bere,StatoOrdine.IN_CORSO,costoCoperto,11,LocalDateTime.now());
     }
 }
